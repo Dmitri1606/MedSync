@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход для врачей</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hidden {
+            display: none;
+        }
+        .dashboard {
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">MedSync</h1>
+        <div class="card-body " id="inputselection">
+                <h5 class="card-title text-center mb-4">Выберите кто вы</h5>
+                <div class="dashboard">
+                    <div class="mt-4">
+                        <button id="doctor" class="btn btn-outline-primary w-100 mb-2">Врач</button>
+                        <button id="patientе" class="btn btn-outline-primary w-100 mt-3">Пациент</button>
+                    </div>
+                </div>
+            </div>
+        <div class="card mx-auto" style="width: 400px;">
+            <!-- Форма входа -->
+            <div class="card-body hidden" id="loginSection">
+                <h5 class="card-title text-center mb-4">Вход для врачей</h5>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Логин:</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Пароль:</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <button type="button" id="loginBtn" class="btn btn-primary w-100">Войти</button>
+                    <button type="button" id="backBtn1" class="btn btn-danger w-100">Назад</button>
+                </form>
+            </div>
+            <div class="card-body hidden" id="loginSection1">
+                <h5 class="card-title text-center mb-4">Вход для пациента</h5>
+                <form id="loginForm1">
+                    <div class="mb-3">
+                        <label for="username1" class="form-label">Логин:</label>
+                        <input type="text" id="username1" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password1" class="form-label">Пароль:</label>
+                        <input type="password1" id="password1" class="form-control" required>
+                    </div>
+                    <button type="button" id="loginBtn1" class="btn btn-primary w-100">Войти</button>
+                    <button type="button" id="backBtn3" class="btn btn-danger w-100">Назад</button>
+                </form>
+            </div>
+
+            <!-- Панель управления (изначально скрыта) -->
+            <div class="card-body hidden" id="dashboardSection">
+                <h5 class="card-title text-center mb-4">Панель управления</h5>
+                <div class="dashboard">
+                    <h6 id="welcomeMessage" class="text-center">Добро пожаловать!</h6>
+                    <div class="mt-4">
+                        <button id="listBtn" class="btn btn-outline-primary w-100 mb-2">Список пациентов</button>
+                        <button id="logoutBtn" class="btn btn-outline-danger w-100 mt-3">Выйти</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Список пациентов (изначально скрыт) -->
+            <div class="card-body hidden" id="listSection">
+                <h5 class="card-title text-center mb-4">Список пациентов</h5>
+                <div class="dashboard">
+                    <h6 class="text-center">Список пациентов</h6>
+                    <div class="mt-4">
+                        <button id="patient" class="btn btn-outline-secondary w-100 mt-3">username1</button>
+                        <button id="backBtn" class="btn btn-danger w-100 mt-3">Назад</button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="card-body hidden" id="Psatient">
+                <h5 class="card-title text-center mb-4">Пациент username1</h5>
+                <div class="dashboard">
+                    <div class="mt-4">
+                        <button id="Symptoms" class="btn btn-outline-secondary w-100 mt-3">Симптомы</button>
+                        <button id="listofmedications" class="btn btn-outline-secondary w-100 mt-3">Список лекарств</button>
+                        <button id="Statistics" class="btn btn-outline-secondary w-100 mt-3">Статистика</button>
+                        <button id="chat" class="btn btn-outline-secondary w-100 mt-3">Чат</button>
+                        <button id="backBtn2" class="btn btn-danger w-100 mt-3">Назад</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+    <script>
+        // Получаем элементы
+        const inputselection = document.getElementById('inputselection');
+        const doctor = document.getElementById('doctor');
+        const patientе = document.getElementById('patientе');
+        const backBtn2 = document.getElementById('backBtn2');
+        const patient = document.getElementById('patient');
+        const Psatient = document.getElementById('Psatient');
+        const loginBtn = document.getElementById('loginBtn');
+        const listBtn = document.getElementById('listBtn');
+        const backBtn = document.getElementById('backBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginSection = document.getElementById('loginSection');
+        const dashboardSection = document.getElementById('dashboardSection');
+        const listSection = document.getElementById('listSection');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const backBtn1 = document.getElementById('backBtn1');
+        const loginSection1 = document.getElementById('loginSection1');
+        const loginBtn1 = document.getElementById('loginBtn1');
+        const backBtn3 = document.getElementById('backBtn3');
+        const username1Input = document.getElementById('username1');
+        const password1Input = document.getElementById('password1');
+
+         // Обработчик кнопки "назад_Пациент"
+        backBtn3.addEventListener('click', function() {
+            inputselection.classList.remove('hidden');
+            loginSection1.classList.add('hidden');
+        });
+
+
+       // Обработчик кнопки "Пациент"
+        patientе.addEventListener('click', function() {
+            inputselection.classList.add('hidden');
+            loginSection1.classList.remove('hidden');
+        });
+
+        // Обработчик кнопки "Пациент_Вход"
+                loginBtn1.addEventListener('click', function() {
+    const username1 = username1Input.value.trim();
+    const password1 = password1Input.value.trim();
+
+    if(username1 && password1) {
+        // Сохраняем имя
+        localStorage.setItem('currentPatient', username1);
+
+        // Обновляем интерфейс
+        document.getElementById('patient').textContent = username1;
+        loginSection1.classList.add('hidden');
+        inputselection.classList.remove('hidden');
+        welcomeMessage.textContent = `Добро пожаловать, ${username1}!`;
+    } else {
+        alert('Пожалуйста, введите логин и пароль');
+    }
+});
+
+
+
+
+
+
+
+        // Обработчик входа
+        loginBtn.addEventListener('click', function() {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+
+            if(username && password) {
+                loginSection.classList.add('hidden');
+                listSection.classList.remove('hidden');
+                welcomeMessage.textContent = `Добро пожаловать, ${username}!`;
+            } else {
+                alert('Пожалуйста, введите логин и пароль');
+            }
+        });
+        // Обработчик кнопки "Доктор"
+        doctor.addEventListener('click', function() {
+            inputselection.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+        });
+        // Обработчик кнопки "Доктор назад"
+        backBtn1.addEventListener('click', function() {
+            inputselection.classList.remove('hidden');
+            loginSection.classList.add('hidden');
+            });
+
+        // Обработчик кнопки "Список пациентов"
+        listBtn.addEventListener('click', function() {
+            dashboardSection.classList.add('hidden');
+            listSection.classList.remove('hidden');
+        });
+
+        // Обработчик кнопки "Назад"
+        backBtn.addEventListener('click', function() {
+            listSection.classList.add('hidden');
+            dashboardSection.classList.remove('hidden');
+        });
+
+        // Обработчик выхода
+        logoutBtn.addEventListener('click', function() {
+            dashboardSection.classList.add('hidden');
+            listSection.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+         });
+
+        // Обработчик кнопки "Вася"
+        patient.addEventListener('click', function() {
+            Psatient.classList.remove('hidden');
+            listSection.classList.add('hidden');
+        });
+          // Обработчик кнопки " выход Вася"
+        backBtn2.addEventListener('click', function() {
+            Psatient.classList.add('hidden');
+            listSection.classList.remove('hidden');
+        });
+
+    </script>
+</body>
+</html>
